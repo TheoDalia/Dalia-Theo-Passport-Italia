@@ -109,8 +109,11 @@ section{padding:90px 20px;}
 .tl-name{font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;}
 .tl-time{font-size:9px;letter-spacing:2px;color:var(--gold);margin-bottom:4px;text-transform:uppercase;}
 .tl-place{font-size:11px;color:rgba(255,255,255,0.45);}
-.tl-map-btn{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:5px 14px;border:1px solid rgba(201,168,76,0.4);border-radius:20px;font-size:9px;letter-spacing:1px;color:var(--gold);text-decoration:none;transition:all 0.3s;}
-.tl-map-btn:hover{background:var(--gold-light);}
+.tl-map-btn{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:5px 14px;border:1px solid rgba(201,168,76,0.4);border-radius:20px;font-size:9px;letter-spacing:1px;color:var(--gold);text-decoration:none;transition:all 0.3s;animation:mapPulse 2s ease-in-out infinite;position:relative;}
+.tl-map-btn:hover{background:var(--gold-light);animation:none;}
+.tl-map-btn::before{content:"→";position:absolute;left:-20px;color:var(--gold);font-size:11px;animation:arrowNudge 2s ease-in-out infinite;opacity:0.8;}
+@keyframes mapPulse{0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,0.4);border-color:rgba(201,168,76,0.4);}50%{box-shadow:0 0 0 6px rgba(201,168,76,0);border-color:rgba(201,168,76,0.9);}}
+@keyframes arrowNudge{0%,100%{transform:translateX(0);}50%{transform:translateX(4px);}}
 .tl-bottom{text-align:center;font-size:20px;position:relative;z-index:2;opacity:0.4;}
 .rsvp{background:var(--dark);position:relative;overflow:hidden;}
 .rsvp::before{content:"LOVE AIRLINES";position:absolute;font-size:100px;font-weight:800;color:rgba(255,255,255,0.02);white-space:nowrap;top:50%;left:50%;transform:translate(-50%,-50%);letter-spacing:10px;pointer-events:none;}
