@@ -56,8 +56,9 @@ body{font-family:"Montserrat",sans-serif;background:var(--cream);color:var(--dar
 nav{position:sticky;top:0;z-index:100;background:var(--green);padding:14px 40px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 20px rgba(0,0,0,0.2);flex-wrap:wrap;gap:10px;}
 .nav-logo{font-family:"Pinyon Script",cursive;font-size:28px;color:var(--gold);}
 .nav-links{display:flex;gap:20px;list-style:none;flex-wrap:wrap;}
-.nav-links a{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.3s;}
-.nav-links a:hover{color:var(--gold);}
+.nav-links a{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none;transition:all 0.3s;animation:navPulse 2.5s ease-in-out infinite;display:inline-block;}
+.nav-links a:hover{color:#fff;animation:none;}
+@keyframes navPulse{0%,100%{opacity:0.7;text-shadow:none;}50%{opacity:1;text-shadow:0 0 8px rgba(201,168,76,0.6);}}
 .hero{min-height:100vh;background:var(--green);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:60px 20px;}
 .hero-stamp{position:absolute;font-size:8px;font-weight:700;letter-spacing:2px;color:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.06);padding:3px 7px;border-radius:3px;}
 .landing-stamp{position:absolute;font-size:8px;font-weight:700;letter-spacing:2px;color:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.08);padding:3px 7px;border-radius:3px;z-index:1;}
@@ -227,12 +228,12 @@ footer{background:var(--green);padding:48px 20px;text-align:center;}
 
 <div id="mainSite">
 <nav>
-  <div class="nav-logo">D &amp; T</div>
+  <div class="nav-logo"><span style="font-size:14px;">🧳</span> D &amp; T <span style="font-size:14px;">🧳</span></div>
   <ul class="nav-links">
-    <li><a href="#acasa">PERMESSO DI VIAGGIO</a></li>
-    <li><a href="#poveste">PASSEGGERI</a></li>
-    <li><a href="#program">ITINERARIO</a></li>
-    <li><a href="#confirmare">IMBARCO</a></li>
+    <li><a href="#acasa">🛩️ PERMESSO DI VIAGGIO</a></li>
+    <li><a href="#poveste">🚂 PASSEGGERI</a></li>
+    <li><a href="#program">🛵 ITINERARIO</a></li>
+    <li><a href="#confirmare">🚁 IMBARCO</a></li>
   </ul>
 </nav>
 <section class="hero" id="acasa">
