@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Music Test</title>
+<style>
+body { background: #1a3a2a; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+button { background: #c9a84c; border: none; border-radius: 30px; padding: 20px 50px; font-size: 18px; font-weight: 700; cursor: pointer; }
+#status { color: #c9a84c; font-family: sans-serif; margin-top: 20px; font-size: 14px; text-align: center; }
+</style>
+</head>
+<body>
+<div style="text-align:center">
+  <audio id="audio" src="Ordinary.mp3" loop></audio>
+  <button onclick="play()">▶️ Pornește muzica</button>
+  <div id="status">Apasă butonul de mai sus</div>
+</div>
+<script>
+function play() {
+  var a = document.getElementById("audio");
+  var s = document.getElementById("status");
+  a.play()
+    .then(function() { s.textContent = "✅ Muzica merge!"; })
+    .catch(function(e) { s.textContent = "❌ Eroare: " + e.message; });
+}
+</script>
+</body>
+</html>
