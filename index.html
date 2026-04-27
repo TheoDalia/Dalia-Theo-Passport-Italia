@@ -160,10 +160,15 @@ footer{background:var(--green);padding:48px 20px;text-align:center;}
   .rsvp-card{padding:32px 20px;}
   nav{padding:10px 12px;flex-direction:column;align-items:center;gap:8px;}
   .nav-logo{font-size:22px;}
-  #landing{align-items:flex-end;}
-  .landing-card-wrap{padding-bottom:0;}
+  #landing{align-items:flex-end;background:#7fa8c0;flex-direction:column;}
+  .landing-bg{position:absolute;inset:0;bottom:auto;height:60%;background:url('airplane-bg.png') center center / contain no-repeat;background-color:#7fa8c0;animation:none;}
+  .landing-overlay{background:linear-gradient(to bottom,transparent 0%,transparent 45%,#7fa8c0 70%,#7fa8c0 100%);}
+  .landing-card-wrap{position:relative;z-index:3;width:100%;display:flex;flex-direction:column;align-items:center;padding-top:8px;padding-bottom:0;margin-top:auto;}
   .bc-card{width:min(340px,92vw);}
-  .btn-open{margin-bottom:24px;}
+  .bc-top{padding:14px 18px 12px;}
+  .bc-names{font-size:38px;}
+  .bc-body{padding:14px 18px;}
+  .btn-open{margin-bottom:28px;margin-top:12px;}
   .landing-stamp{display:none;}
 }
 </style>
