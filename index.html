@@ -16,15 +16,14 @@ body{font-family:"Montserrat",sans-serif;background:var(--cream);color:var(--dar
 @keyframes flyPlane{0%{transform:translate(-110vw,15vh) rotate(-8deg) scale(0.4);opacity:0;}15%{transform:translate(-35vw,5vh) rotate(-5deg) scale(0.8);opacity:1;}45%{transform:translate(0vw,-8vh) rotate(-2deg) scale(1.1);opacity:1;}70%{transform:translate(20vw,5vh) rotate(4deg) scale(0.9);opacity:1;}90%{transform:translate(35vw,20vh) rotate(14deg) scale(0.6);opacity:0.4;}100%{transform:translate(50vw,40vh) rotate(20deg) scale(0.2);opacity:0;}}
 .globe-text{position:absolute;z-index:5;bottom:20%;left:50%;transform:translateX(-50%);font-family:"Montserrat",sans-serif;font-size:clamp(14px,4vw,28px);font-weight:800;letter-spacing:8px;color:var(--gold);opacity:0;animation:textShow 5s ease forwards;animation-delay:0.8s;}
 @keyframes textShow{0%{opacity:0;}20%{opacity:1;}80%{opacity:1;}100%{opacity:0;}}
-#landing{position:fixed;inset:0;z-index:2000;background:linear-gradient(160deg,#1a3a2a 0%,#0d2018 100%);display:none;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;transition:opacity 0.8s ease,transform 0.8s ease;}
+#landing{position:fixed;inset:0;z-index:2000;background:#6a8fa8;display:none;align-items:flex-end;justify-content:center;overflow:hidden;transition:opacity 0.8s ease,transform 0.8s ease;}
 #landing.hide{opacity:0;transform:scale(1.05);pointer-events:none;}
-.landing-map{position:absolute;inset:0;opacity:0.06;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 500'%3E%3Cellipse cx='150' cy='180' rx='120' ry='80' fill='%23c9a84c'/%3E%3Cellipse cx='380' cy='160' rx='140' ry='90' fill='%23c9a84c'/%3E%3Cellipse cx='520' cy='200' rx='80' ry='60' fill='%23c9a84c'/%3E%3Cellipse cx='680' cy='170' rx='70' ry='55' fill='%23c9a84c'/%3E%3C/svg%3E") center/cover;}
-.plane-float{position:absolute;width:52px;height:52px;background:rgba(255,255,255,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;animation:pFloat 6s ease-in-out infinite;}
-.plane-float:nth-child(2){top:15%;right:12%;}
-.plane-float:nth-child(3){bottom:20%;left:8%;animation-delay:2s;}
-.plane-float:nth-child(4){top:40%;left:5%;animation-delay:1s;font-size:14px;width:36px;height:36px;}
+.landing-bg{position:absolute;inset:0;background:url('airplane-bg.png') center/cover no-repeat;animation:bgFloat 8s ease-in-out infinite;}
+@keyframes bgFloat{0%,100%{transform:scale(1) translateY(0);}50%{transform:scale(1.015) translateY(-6px);}}
+.landing-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(100,140,165,0.15) 0%,rgba(80,110,130,0.05) 60%,rgba(40,60,75,0.55) 100%);}
+.plane-float{display:none;}
 @keyframes pFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
-.bc-card{width:min(380px,88vw);background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.5);position:relative;z-index:2;animation:cardIn 1s ease 0.3s both;}
+.bc-card{width:min(380px,88vw);background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.55),0 0 0 1px rgba(201,168,76,0.15);position:relative;z-index:2;animation:cardIn 1s ease 0.3s both;}
 @keyframes cardIn{from{opacity:0;transform:translateY(40px) scale(0.95);}to{opacity:1;transform:translateY(0) scale(1);}}
 .bc-top{background:var(--green);padding:20px 24px 16px;position:relative;overflow:visible;}
 .bc-top::after{content:"";position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(201,168,76,0.1);}
@@ -46,8 +45,8 @@ body{font-family:"Montserrat",sans-serif;background:var(--cream);color:var(--dar
 .bc-bar:nth-child(odd){height:20px;}
 .bc-bar:nth-child(even){height:14px;}
 .bc-bar:nth-child(3n){height:24px;}
-.btn-open{margin-top:24px;position:relative;z-index:2;animation:cardIn 1s ease 0.8s both;}
-.btn-open button{background:transparent;border:1.5px solid rgba(201,168,76,0.5);border-radius:30px;padding:14px 40px;font-family:"Montserrat",sans-serif;font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);cursor:pointer;transition:all 0.3s;position:relative;overflow:hidden;}
+.btn-open{margin-top:16px;margin-bottom:32px;position:relative;z-index:2;animation:cardIn 1s ease 0.8s both;}
+.btn-open button{background:rgba(26,58,42,0.85);backdrop-filter:blur(8px);border:1.5px solid rgba(201,168,76,0.6);border-radius:30px;padding:14px 40px;font-family:"Montserrat",sans-serif;font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);cursor:pointer;transition:all 0.3s;position:relative;overflow:hidden;}
 .btn-open button::before{content:"";position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.4s ease;}
 .btn-open button:hover::before{transform:scaleX(1);}
 .btn-open button:hover{color:var(--dark);}
@@ -63,7 +62,8 @@ nav{position:sticky;top:0;z-index:100;background:var(--green);padding:14px 40px;
 .hero-stamp{position:absolute;font-size:8px;font-weight:700;letter-spacing:2px;color:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.06);padding:3px 7px;border-radius:3px;}
 .float-emoji{position:absolute;font-size:22px;opacity:0.15;pointer-events:none;animation:floatEmoji 6s ease-in-out infinite;z-index:1;}
 @keyframes floatEmoji{0%,100%{transform:translateY(0) rotate(-5deg);}50%{transform:translateY(-12px) rotate(5deg);}}
-.landing-stamp{position:absolute;font-size:8px;font-weight:700;letter-spacing:2px;color:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.08);padding:3px 7px;border-radius:3px;z-index:1;}
+.landing-card-wrap{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;padding-bottom:0;width:100%;}
+.landing-stamp{position:absolute;font-size:8px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.2);padding:3px 7px;border-radius:3px;z-index:2;text-shadow:0 1px 4px rgba(0,0,0,0.5);}
 .hero-content{position:relative;z-index:2;text-align:center;animation:fadeUp 1s ease both;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
 .hero-eyebrow{font-size:9px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
@@ -160,6 +160,11 @@ footer{background:var(--green);padding:48px 20px;text-align:center;}
   .rsvp-card{padding:32px 20px;}
   nav{padding:10px 12px;flex-direction:column;align-items:center;gap:8px;}
   .nav-logo{font-size:22px;}
+  #landing{align-items:flex-end;}
+  .landing-card-wrap{padding-bottom:0;}
+  .bc-card{width:min(340px,92vw);}
+  .btn-open{margin-bottom:24px;}
+  .landing-stamp{display:none;}
 }
 </style>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -189,10 +194,8 @@ footer{background:var(--green);padding:48px 20px;text-align:center;}
 </div>
 
 <div id="landing">
-  <div class="landing-map"></div>
-  <div class="plane-float">🛩️</div>
-  <div class="plane-float">🛩️</div>
-  <div class="plane-float">🛩️</div>
+  <div class="landing-bg"></div>
+  <div class="landing-overlay"></div>
   <span class="landing-stamp" style="top:8%;left:5%;transform:rotate(-10deg)">ROMA</span>
   <span class="landing-stamp" style="top:12%;right:6%;transform:rotate(8deg)">VENEZIA</span>
   <span class="landing-stamp" style="top:35%;left:3%;transform:rotate(-6deg)">FIRENZE</span>
@@ -201,9 +204,7 @@ footer{background:var(--green);padding:48px 20px;text-align:center;}
   <span class="landing-stamp" style="bottom:15%;right:7%;transform:rotate(6deg)">NAPOLI</span>
   <span class="landing-stamp" style="top:70%;left:4%;transform:rotate(4deg)">MILANO</span>
   <span class="landing-stamp" style="top:25%;right:3%;transform:rotate(-5deg)">SICILIA</span>
-  <span class="float-emoji" style="top:20%;left:8%;animation-delay:0s">🧳</span>
-  <span class="float-emoji" style="top:60%;right:9%;animation-delay:1.5s">🚂</span>
-  <span class="float-emoji" style="bottom:30%;left:7%;animation-delay:3s">🛵</span>
+  <div class="landing-card-wrap">
   <div class="bc-card">
     <div class="bc-top">
       <div class="bc-airline" id="bc-airline">🛩️ Love Airlines</div>
@@ -241,6 +242,7 @@ footer{background:var(--green);padding:48px 20px;text-align:center;}
   <div class="btn-open">
     <button onclick="deschideInvitatia()"><span id="btn-open-text">🛩️ Deschide invitația</span></button>
   </div>
+  </div><!-- /landing-card-wrap -->
 </div>
 
 <div id="mainSite">
