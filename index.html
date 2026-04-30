@@ -533,20 +533,20 @@ function startCountdown() {
 function updatePersoane(){
   var nr=parseInt(document.getElementById("nrPersoane").value)||0;
   var c=document.getElementById("persoaneleContainer"); c.innerHTML="";
+  var tr_lang=window._currentLang&&window.translations&&window.translations[window._currentLang]?window.translations[window._currentLang]:{};
   for(var i=1;i<=nr;i++){
     var titlu=nr===1?"Detalii participant":"Participant "+i;
     var b=document.createElement("div"); b.className="persoana-block";
     var te=document.createElement("div"); te.className="persoana-titlu"; te.textContent=titlu; b.appendChild(te);
     var ng=document.createElement("div"); ng.className="form-group";
-    var nl=document.createElement("label"); nl.className="form-label lbl-numecomplet"; nl.textContent=(t&&t.lbl_numecomplet)||"Numele complet";
-    var ni=document.createElement("input"); ni.type="text"; ni.className="form-input"; ni.name="Participant "+i+" - Nume"; ni.placeholder=(t&&t.ph_numecomplet)||"Prenume și Nume"; ni.required=true;
+    var nl=document.createElement("label"); nl.className="form-label lbl-numecomplet"; nl.textContent=(tr_lang&&tr_lang.lbl_numecomplet)||"Numele complet";
+    var ni=document.createElement("input"); ni.type="text"; ni.className="form-input"; ni.name="Participant "+i+" - Nume"; ni.placeholder=(tr_lang&&tr_lang.ph_numecomplet)||"Prenume și Nume"; ni.required=true;
     ng.appendChild(nl); ng.appendChild(ni); b.appendChild(ng);
     var tg=document.createElement("div"); tg.className="form-group";
-    var tl=document.createElement("label"); tl.className="form-label lbl-tip"; tl.textContent=(t&&t.lbl_tip)||"Tip participant"; tg.appendChild(tl);
-    var tr=document.createElement("div"); tr.className="meniu-row"; tr.id="tip-row-"+i;
+    var tl=document.createElement("label"); tl.className="form-label lbl-tip"; tl.textContent=(tr_lang&&tr_lang.lbl_tip)||"Tip participant"; tg.appendChild(tl);
+    var tiprow=document.createElement("div"); tiprow.className="meniu-row"; tiprow.id="tip-row-"+i;
     var ht=document.createElement("input"); ht.type="hidden"; ht.name="Participant "+i+" - Tip"; ht.id="hid-tip-"+i; ht.value="Adult";
-    var t=window._currentLang&&window.translations&&window.translations[window._currentLang]?window.translations[window._currentLang]:{};
-    var tipuri=["👤 "+(t.lbl_adult||"Adult"),"👶 "+(t.lbl_copil?t.lbl_copil.replace("👶 ",""):"Copil")],tipValori=["Adult","Copil"];
+    var tipuri=["👤 "+(tr_lang.lbl_adult||"Adult"),"👶 "+(tr_lang.lbl_copil?tr_lang.lbl_copil.replace("👶 ",""):"Copil")],tipValori=["Adult","Copil"];
     for(var tt=0;tt<2;tt++){
       (function(tt,i){
         var btn=document.createElement("button"); btn.type="button";
@@ -556,10 +556,10 @@ function updatePersoane(){
           btn.classList.add("active"); document.getElementById("hid-tip-"+i).value=tipValori[tt];
           document.getElementById("ma-"+i).style.display=tipValori[tt]==="Copil"?"none":"block";
           document.getElementById("mc-"+i).style.display=tipValori[tt]==="Copil"?"block":"none";
-        }); tr.appendChild(btn);
+        }); tiprow.appendChild(btn);
       })(tt,i);
     }
-    tg.appendChild(tr); tg.appendChild(ht); b.appendChild(tg);
+    tg.appendChild(tiprow); tg.appendChild(ht); b.appendChild(tg);
     b.appendChild(buildMeniu(i,"Adult","ma-"+i,true));
     b.appendChild(buildMeniu(i,"Copil","mc-"+i,false));
     c.appendChild(b);
@@ -568,7 +568,7 @@ function updatePersoane(){
 
 function buildMeniu(i,tip,wid,vis){
   var mg=document.createElement("div"); mg.className="form-group"; mg.id=wid; mg.style.display=vis?"block":"none";
-  var ml=document.createElement("label"); ml.className="form-label"; ml.className+=" lbl-meniu"; ml.textContent=tip==="Copil"?((t&&t.lbl_meniu_copil)||"Meniu copil"):((t&&t.lbl_meniu)||"Meniu preferat"); mg.appendChild(ml);
+  var ml=document.createElement("label"); ml.className="form-label"; ml.className+=" lbl-meniu"; var t2b=window._currentLang&&window.translations&&window.translations[window._currentLang]?window.translations[window._currentLang]:{}; ml.textContent=tip==="Copil"?((t2b&&t2b.lbl_meniu_copil)||"Meniu copil"):((t2b&&t2b.lbl_meniu)||"Meniu preferat"); mg.appendChild(ml);
   var hn="Participant "+i+(tip==="Copil"?" - Meniu Copil":" - Meniu");
   var mr=document.createElement("div"); mr.className="meniu-row"; mr.id="mr-"+tip.toLowerCase()+"-"+i;
   var hi=document.createElement("input"); hi.type="hidden"; hi.name=hn; hi.id="hid-"+hn;
